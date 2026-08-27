@@ -1,5 +1,10 @@
 # Repository Guides
 
+## 架构与核心方法专题
+
+- [专题索引](architecture/README.md)
+- [Agent Loop 双层循环架构详解](architecture/agent-loop.md)
+
 ## 源码架构学习
 
 - [Pi Agent 源码架构学习指南](source-reading/README.md)
