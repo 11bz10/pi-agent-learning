@@ -259,8 +259,8 @@ export function stream<TApi extends Api>(
 		}
 		return builtinProvider.stream(model, context, withEnvApiKey(model, options) as ApiStreamOptions<TApi>);
 	}
-	const provider = resolveApiProvider(model.api);
-	return provider.stream(model, context, withEnvApiKey(model, options) as StreamOptions);
+	const provider = resolveApiProvider(model.api); //查表，这个model找哪个供应商
+	return provider.stream(model, context, withEnvApiKey(model, options) as StreamOptions); // 把工作派给“翻译器”
 }
 
 export async function complete<TApi extends Api>(

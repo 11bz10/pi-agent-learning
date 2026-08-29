@@ -66,7 +66,9 @@ export class EventStream<T, R = T> implements AsyncIterable<T> {
 	}
 }
 
+// 定义了各种大模型供应商的响应翻译器都要输出统一的事件流
 export class AssistantMessageEventStream extends EventStream<AssistantMessageEvent, AssistantMessage> {
+	// 子类做的事就是：把"12 种事件"翻译成"1 个最终结果"。翻译规则在构造函数里
 	constructor() {
 		super(
 			(event) => event.type === "done" || event.type === "error",

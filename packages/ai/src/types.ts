@@ -330,10 +330,10 @@ export interface SimpleStreamOptions extends StreamOptions {
 // - Error termination must produce an AssistantMessage with stopReason
 //   "error" or "aborted" and errorMessage, emitted via the stream protocol.
 export type StreamFunction<TApi extends Api = Api, TOptions extends StreamOptions = StreamOptions> = (
-	model: Model<TApi>,
-	context: Context,
-	options?: TOptions,
-) => AssistantMessageEventStream;
+	model: Model<TApi>, //模型
+	context: Context, // 对话上下文
+	options?: TOptions, // 可选配置
+) => AssistantMessageEventStream; // 返回统一的事件流
 
 export type ImagesFunction<TApi extends ImagesApi = ImagesApi, TOptions extends ImagesOptions = ImagesOptions> = (
 	model: ImagesModel<TApi>,
@@ -512,10 +512,10 @@ export type ConstrainedSamplingConfig =
 	  };
 
 export interface Tool<TParameters extends TSchema = TSchema> {
-	name: string;
-	description: string;
-	parameters: TParameters;
-	constrainedSampling?: false | ConstrainedSamplingConfig;
+	name: string; //工具名
+	description: string; //描述
+	parameters: TParameters; //schema
+	constrainedSampling?: false | ConstrainedSamplingConfig; //约束采样配置
 }
 
 export interface Context {
@@ -533,6 +533,7 @@ export interface Context {
  *   and errorMessage.
  */
 export type AssistantMessageEvent =
+	// 总共定义了12种事件
 	| { type: "start"; partial: AssistantMessage }
 	| { type: "text_start"; contentIndex: number; partial: AssistantMessage }
 	| { type: "text_delta"; contentIndex: number; delta: string; partial: AssistantMessage }

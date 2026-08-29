@@ -390,14 +390,14 @@ export interface AgentTool<TParameters extends TSchema = TSchema, TDetails = any
 	 * Optional compatibility shim for raw tool-call arguments before schema validation.
 	 * Must return an object that matches `TParameters`.
 	 */
-	prepareArguments?: (args: unknown) => Static<TParameters>;
+	prepareArguments?: (args: unknown) => Static<TParameters>; //参数预处理
 	/** Execute the tool call. Throw on failure instead of encoding errors in `content`. */
 	execute: (
 		toolCallId: string,
-		params: Static<TParameters>,
+		params: Static<TParameters>, //校验后的参数
 		signal?: AbortSignal,
 		onUpdate?: AgentToolUpdateCallback<TDetails>,
-	) => Promise<AgentToolResult<TDetails>>;
+	) => Promise<AgentToolResult<TDetails>>; //执行函数
 	/**
 	 * Per-tool execution mode override.
 	 * - "sequential": this tool must execute one at a time with other tool calls.
@@ -405,7 +405,7 @@ export interface AgentTool<TParameters extends TSchema = TSchema, TDetails = any
 	 *
 	 * If omitted, the default execution mode applies.
 	 */
-	executionMode?: ToolExecutionMode;
+	executionMode?: ToolExecutionMode; //执行模式覆盖（串行还是并行）
 }
 
 /** Context snapshot passed into the low-level agent loop. */
