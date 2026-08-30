@@ -69,10 +69,10 @@ export interface CompactionSummaryMessage {
 // Extend CustomAgentMessages via declaration merging
 declare module "@earendil-works/pi-agent-core" {
 	interface CustomAgentMessages {
-		bashExecution: BashExecutionMessage;
-		custom: CustomMessage;
-		branchSummary: BranchSummaryMessage;
-		compactionSummary: CompactionSummaryMessage;
+		bashExecution: BashExecutionMessage; //bash命令执行记录
+		custom: CustomMessage; //扩展注入的通用消息
+		branchSummary: BranchSummaryMessage; //分支切换的摘要
+		compactionSummary: CompactionSummaryMessage; //上下文压缩后的摘要
 	}
 }
 

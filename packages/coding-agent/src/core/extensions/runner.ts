@@ -798,6 +798,7 @@ export class ExtensionRunner {
 		);
 	}
 
+	// 通知型
 	async emit<TEvent extends RunnerEmitEvent>(event: TEvent): Promise<RunnerEmitResult<TEvent>> {
 		const ctx = this.createContext();
 		let result: SessionBeforeEventResult | undefined;
@@ -929,6 +930,7 @@ export class ExtensionRunner {
 		};
 	}
 
+	// 决策型
 	async emitToolCall(event: ToolCallEvent): Promise<ToolCallEventResult | undefined> {
 		const ctx = this.createContext();
 		let result: ToolCallEventResult | undefined;

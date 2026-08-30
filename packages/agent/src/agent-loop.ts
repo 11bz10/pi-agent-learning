@@ -309,12 +309,13 @@ async function streamAssistantResponse(
 ): Promise<AssistantMessage> {
 	// Apply context transform if configured (AgentMessage[] → AgentMessage[])
 	let messages = context.messages;
+	// 两者分开的好处，就是可以替换其中一个，可以自己修改上下文管理策略、也可以单独修改应用类型
 	if (config.transformContext) {
-		//上下文预处理
+		//上下文预处理，整理agent自己的上下文
 		messages = await config.transformContext(messages, signal);
 	}
 
-	// Convert to LLM-compatible messages (AgentMessage[] → Message[]) 消息转换
+	// Convert to LLM-compatible messages (AgentMessage[] → Message[]) 消息转换，把Agent的消息转换成模型能理解的消息
 	const llmMessages = await config.convertToLlm(messages);
 
 	// Build LLM context

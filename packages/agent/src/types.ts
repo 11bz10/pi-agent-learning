@@ -322,7 +322,7 @@ export interface CustomAgentMessages {
  * This abstraction allows apps to add custom message types while maintaining
  * type safety and compatibility with the base LLM messages.
  */
-export type AgentMessage = Message | CustomAgentMessages[keyof CustomAgentMessages];
+export type AgentMessage = Message | CustomAgentMessages[keyof CustomAgentMessages]; // 实际在使用的时候，自定义消息会转化成UserMessage给到LLM
 
 /**
  * Public agent state.
@@ -441,3 +441,26 @@ export type AgentEvent =
 	| { type: "tool_execution_start"; toolCallId: string; toolName: string; args: any }
 	| { type: "tool_execution_update"; toolCallId: string; toolName: string; args: any; partialResult: any }
 	| { type: "tool_execution_end"; toolCallId: string; toolName: string; result: any; isError: boolean };
+/**
+ * Agent 运行
+├── agent_start ───────────────────── Agent 开始
+│
+├── Turn 1（第3章讲过：一次模型调用 + 它触发的工具执行）
+│   ├── turn_start ────────────────── Turn 开始
+│   │
+│   ├── Message（LLM 的响应）
+│   │   ├── message_start
+│   │   ├── message_update ×N ────── 流式增量（逐 token 更新）
+│   │   └── message_end
+│   │
+│   ├── Tool Execution（工具执行）
+│   │   ├── tool_execution_start
+│   │   ├── tool_execution_update ×N  工具进度（如 Bash 的输出）
+│   │   └── tool_execution_end
+│   │
+│   └── turn_end ──────────────────── Turn 结束
+│
+├── Turn 2 ...
+│
+└── agent_end ──────────────────────── Agent 结束
+ */

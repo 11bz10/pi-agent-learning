@@ -125,6 +125,7 @@ export function convertToLlm(messages: AgentMessage[]): Message[] {
 	return messages
 		.map((m): Message | undefined => {
 			switch (m.role) {
+				// 按照role字段来分派进行处理
 				case "bashExecution":
 					if (m.excludeFromContext) {
 						return undefined;

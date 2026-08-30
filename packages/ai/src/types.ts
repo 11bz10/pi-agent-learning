@@ -419,14 +419,16 @@ export interface DeferredHandle {
 }
 
 export interface UserMessage {
+	//用户说的话、图片
 	role: "user";
 	content: string | (TextContent | ImageContent)[];
 	timestamp: number; // Unix timestamp in milliseconds
 }
 
 export interface AssistantMessage {
+	//LLM回复（含思考和工具调用
 	role: "assistant";
-	content: (TextContent | ThinkingContent | ToolCall)[];
+	content: (TextContent | ThinkingContent | ToolCall)[]; //内容块数组（普通文本、思考过程、工具调用）
 	api: Api;
 	provider: ProviderId;
 	model: string;
@@ -447,11 +449,12 @@ export interface AssistantMessage {
 }
 
 export interface ToolResultMessage<TDetails = any> {
+	//工具执行结果
 	role: "toolResult";
 	toolCallId: string;
 	toolName: string;
 	content: (TextContent | ImageContent)[]; // Supports text and images
-	details?: TDetails;
+	details?: TDetails; //携带结构化信息给渲染用
 	/** Usage from the tool execution itself, if available. Not part of main LLM context accounting. */
 	usage?: Usage;
 	/**
