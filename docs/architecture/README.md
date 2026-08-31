@@ -10,3 +10,4 @@
 - [从 Coding Agent 到 LLM 的消息架构](4.message-architecture-from-coding-agent-to-llm.md)：解释 SessionEntry、AgentMessage、Message、Provider payload 和事件之间的转换，以及普通消息、工具结果和 UI-only 消息的完整传递链路。
 - [Agent Event 流转与扩展管道](5.agent-event-flow-and-extension-pipeline.md)：解释 AgentEvent、AgentSessionEvent 与 ExtensionEvent 的三层模型，`agent.subscribe()`、`session.subscribe()` 和 `pi.on()` 的等待语义、调度规则、错误边界与适用场景。
 - [上下文工程：四类控制机制、工具端到端链路与设计精华](6.context-engineering.md)：解释工具截断、系统提示词、Compaction、分支摘要，一次 `read` 调用从 ToolCall 到下一轮请求的完整链路，以及可复用的上下文工程原则。
+- [会话管理：从 Append-only JSONL、会话树到可替换存储](7.session-management-and-storage.md)：解释会话数据的物理存储、树增长与分支、Entry 类型、Append-only 机制、上下文投影，以及 Agent 层可替换后端接口和数据库实现边界。
