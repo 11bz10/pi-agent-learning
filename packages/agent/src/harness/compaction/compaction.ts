@@ -271,7 +271,9 @@ function estimateTextAndImageContentChars(content: string | Array<{ type: string
 export function estimateTokens(message: AgentMessage): number {
 	let chars = 0;
 
+	// 对每个 message 取其文本字符数 chars，然后 return Math.ceil(chars / 4)
 	switch (message.role) {
+		// ...按 message.role 分别累加 text/thinking/toolCall/command/output/summary 的字符数
 		case "user": {
 			chars = estimateTextAndImageContentChars(
 				(message as { content: string | Array<{ type: string; text?: string }> }).content,
