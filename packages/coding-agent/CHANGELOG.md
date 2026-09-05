@@ -2,9 +2,14 @@
 
 ## [Unreleased]
 
+### Breaking Changes
+
+- Restricted the experimental `client` and `experimental/plugin` package subpaths and server/client commands to source development through `pi-test.sh`. They are no longer included in npm packages or standalone binaries; the local SDK and stdio RPC API are unchanged.
+
 ### Fixed
 
 - Fixed configurable save keybindings in the model and thinking selectors ([#8797](https://github.com/earendil-works/pi/issues/8797)).
+- Fixed SDK imports failing on missing remote-server dependencies by excluding the development-only runtime from distributed builds ([#9132](https://github.com/earendil-works/pi/issues/9132)).
 
 ## [0.85.0] - 2026-09-04
 
