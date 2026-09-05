@@ -2,14 +2,20 @@
 
 ## [Unreleased]
 
-### Breaking Changes
+### New Features
 
-- Restricted the experimental `client` and `experimental/plugin` package subpaths and server/client commands to source development through `pi-test.sh`. They are no longer included in npm packages or standalone binaries; the local SDK and stdio RPC API are unchanged.
+- **GPT-6 Astra** — Available through OpenAI API keys and OpenAI Codex subscriptions. See [API Keys](docs/providers.md#api-keys) and [OpenAI Codex](docs/providers.md#openai-codex).
+
+### Added
+
+- Added GPT-6 Astra for OpenAI API keys and OpenAI Codex subscriptions.
 
 ### Fixed
 
-- Fixed configurable save keybindings in the model and thinking selectors ([#8797](https://github.com/earendil-works/pi/issues/8797)).
-- Fixed SDK imports failing on missing remote-server dependencies by excluding the development-only runtime from distributed builds ([#9132](https://github.com/earendil-works/pi/issues/9132)).
+- Fixed configurable save keybindings in the model and thinking selectors ([#9149](https://github.com/earendil-works/pi/pull/9149) by [@rwachtler](https://github.com/rwachtler)).
+- Fixed SDK import failures caused by unintentionally publishing internal experimental code and dependencies in 0.85.0. The experimental `client` and `experimental/plugin` subpaths and server/client commands are now source-only through `pi-test.sh`; the supported local SDK and stdio RPC API are unchanged ([#9132](https://github.com/earendil-works/pi/issues/9132)).
+- Fixed mouse hover changing selection and recentering autocomplete and settings lists, causing clicks to target a different item.
+- Fixed long prompt-cache requests for GPT-5.6+ Responses models to use `prompt_cache_options.ttl: "30m"` instead of `prompt_cache_retention: "24h"`.
 
 ## [0.85.0] - 2026-09-04
 
